@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sec-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sec-container h2 {
+  margin: 0;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.server-tip-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.server-tip-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.server-table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.server-table {
+  width: 50%;
+}
