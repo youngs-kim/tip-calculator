@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import '../App.css';
 
 const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
-  console.log('totalServerHours', totalServerHours);
-  console.log('serverTotalTip', serverTotalTip);
-
   const defaultServer = {
     name: '',
     hours: 0,
@@ -30,8 +27,10 @@ const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
   const addServer = (e) => {
     e.preventDefault();
     setServerList([...serverList, defaultServer]);
-    console.log(serverList);
+    console.log(serverList, 'hello');
   };
+
+  const deleteServer = () => {};
 
   return (
     <div>
@@ -75,6 +74,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
                   </td>
                   <td>
                     <h2>${item.earnedTips}</h2>
+                    <button onClick={deleteServer}>Delete</button>
                   </td>
                 </tr>
               );
