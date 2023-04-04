@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
-const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
+const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   const defaultServer = {
     name: '',
     hours: '',
@@ -44,6 +44,11 @@ const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
       <div className="add-button">
         <button onClick={addServer}>+</button>
       </div>
+
+      <h5>Tip Per Hour: ${tipPerHour}</h5>
+      <h5>Total Hours left: </h5>
+      <h5>Total Tip left: </h5>
+
       {/* <div className="server-tip-info">
         <h2>Name</h2>
         <h2>Hours</h2>

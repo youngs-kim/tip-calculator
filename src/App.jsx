@@ -8,6 +8,7 @@ function App() {
   const [percentKitchen, setPercentKitchen] = useState('');
   const [kitchenTip, setKitchenTip] = useState(0);
   const [serverTotalTip, setServerTotalTip] = useState(0);
+  const [tipPerHour, setTipPerHour] = useState(0);
 
   const onChangeTotalTip = (e) => {
     setTotalTip(e.target.value);
@@ -15,6 +16,7 @@ function App() {
 
   const onChangeTotalServerHours = (e) => {
     setTotalServerHours(e.target.value);
+    console.log(tipPerHour, 'starbucks');
   };
 
   const onChangePercentKitchen = (e) => {
@@ -27,7 +29,12 @@ function App() {
     if (totalTip === '') {
       setServerTotalTip(0);
     } else {
+      const tip = totalTip - kitchenTip;
       setServerTotalTip(parseFloat(totalTip - kitchenTip).toFixed(2));
+      setTipPerHour(parseFloat(tip / totalServerHours).toFixed(2));
+      console.log(serverTotalTip, 'serverTotalTip');
+      console.log(totalServerHours, 'totalServerHours');
+      console.log(kitchenTip, 'kitchenTip');
     }
   }, [kitchenTip]);
 
@@ -59,7 +66,7 @@ function App() {
         </div>
 
         <div className="sec-container">
-          <h2>After Kitchen</h2>
+          <h2>Kitchen Tip</h2>
           <h2>${kitchenTip}</h2>
         </div>
 
@@ -72,6 +79,7 @@ function App() {
       <TipPerServer
         totalServerHours={totalServerHours}
         serverTotalTip={serverTotalTip}
+        tipPerHour={tipPerHour}
       />
     </div>
   );
