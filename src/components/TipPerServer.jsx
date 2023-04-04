@@ -4,7 +4,7 @@ import '../App.css';
 const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
   const defaultServer = {
     name: '',
-    hours: 0,
+    hours: '',
     earnedTips: 0,
   };
 
@@ -30,7 +30,14 @@ const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
     console.log(serverList, 'hello');
   };
 
-  const deleteServer = () => {};
+  const deleteServer = (ind) => {
+    const newArray = serverList.filter((item, index) => index !== ind);
+    setServerList(newArray);
+    console.log(ind, 'ind');
+    // const newArray = serverList.filter((item) => item.id !== id);
+    // setServerList(newArray);
+    // console.log('amc');
+  };
 
   return (
     <div>
@@ -74,7 +81,11 @@ const TipPerServer = ({ totalServerHours, serverTotalTip }) => {
                   </td>
                   <td>
                     <h2>${item.earnedTips}</h2>
-                    <button onClick={deleteServer}>Delete</button>
+                    <div>
+                      <button onClick={() => deleteServer(index)}>
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               );
