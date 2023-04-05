@@ -20,8 +20,11 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     return sum;
   };
 
-  const calcEarnedTips = () => {
-    // let tip = tipPerHour *
+  const calcEarnedTips = (serverList) => {
+    for (let i = 0; i < serverList.length; i++) {
+      serverList[i].earnedTips = serverList[i].hours * tipPerHour;
+    }
+    setServerList(serverList);
   };
 
   const updateHours = (index) => (e) => {
@@ -48,7 +51,14 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
 
   const addServer = (e) => {
     e.preventDefault();
-    setServerList([...serverList, defaultServer]);
+
+    const server = {
+      name: '',
+      hours: '',
+      earnedTips: 0,
+    };
+
+    setServerList([...serverList, server]);
     console.log(serverList[0].hours, 'hello');
   };
 
@@ -138,6 +148,9 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
             </tr> */}
           </tbody>
         </table>
+      </div>
+      <div>
+        <button onClick={() => calcEarnedTips(serverList)}>Calculate</button>
       </div>
     </div>
   );
