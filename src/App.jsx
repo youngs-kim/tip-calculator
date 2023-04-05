@@ -16,7 +16,6 @@ function App() {
 
   const onChangeTotalServerHours = (e) => {
     setTotalServerHours(e.target.value);
-    console.log(tipPerHour, 'starbucks');
   };
 
   const onChangePercentKitchen = (e) => {

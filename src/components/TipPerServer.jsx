@@ -9,12 +9,27 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   };
 
   const [serverList, setServerList] = useState([defaultServer]);
+  const [totalHoursLeft, setTotalHoursLeft] = useState(0);
+  const [totalTipLeft, setTotalTipLeft] = useState(0);
+
+  const sumTotalHours = (arr) => {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      sum = sum + arr[i].hours;
+    }
+    return sum;
+  };
+
+  const calcEarnedTips = () => {
+    // let tip = tipPerHour *
+  };
 
   const updateHours = (index) => (e) => {
     e.preventDefault();
     let arr = [...serverList];
     arr[index]['hours'] = e.target.valueAsNumber;
     setServerList(arr);
+    setTotalHoursLeft(totalServerHours - sumTotalHours(arr));
   };
 
   const updateName = (index) => (e) => {
@@ -24,10 +39,17 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     setServerList(arr);
   };
 
+  // const handleInputChange = (e, index) => {
+  //   const { name, value } = e.target;
+  //   let arr = [...serverList];
+  //   arr[index][name] = value;
+  //   setServerList(arr);
+  // };
+
   const addServer = (e) => {
     e.preventDefault();
     setServerList([...serverList, defaultServer]);
-    console.log(serverList, 'hello');
+    console.log(serverList[0].hours, 'hello');
   };
 
   const deleteServer = (ind) => {
@@ -46,8 +68,8 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
       </div>
 
       <h5>Tip Per Hour: ${tipPerHour}</h5>
-      <h5>Total Hours left: </h5>
-      <h5>Total Tip left: </h5>
+      <h5>Total Hours left: {totalHoursLeft}</h5>
+      <h5>Total Tip left: ${totalTipLeft}</h5>
 
       {/* <div className="server-tip-info">
         <h2>Name</h2>
@@ -73,15 +95,19 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
                   <td>
                     <input
                       type="text"
+                      name="name"
                       value={item.name}
                       onChange={updateName(index)}
+                      // onChange={(e) => handleInputChange()}
                     />
                   </td>
                   <td>
                     <input
                       type="number"
+                      name="hours"
                       value={item.hours}
                       onChange={updateHours(index)}
+                      // onChange={(e) => handleInputChange()}
                     />
                   </td>
                   <td>
