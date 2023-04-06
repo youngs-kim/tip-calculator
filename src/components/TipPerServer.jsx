@@ -20,15 +20,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     return sum;
   };
 
-  const calcEarnedTips = (serverList) => {
-    for (let i = 0; i < serverList.length; i++) {
-      serverList[i].earnedTips = serverList[i].hours * tipPerHour;
-    }
-    setServerList(serverList);
-  };
-
   const updateHours = (index) => (e) => {
-    e.preventDefault();
     let arr = [...serverList];
     arr[index]['hours'] = e.target.valueAsNumber;
     setServerList(arr);
@@ -36,7 +28,6 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   };
 
   const updateName = (index) => (e) => {
-    e.preventDefault();
     let arr = [...serverList];
     arr[index]['name'] = e.target.value;
     setServerList(arr);
@@ -59,7 +50,6 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     };
 
     setServerList([...serverList, server]);
-    console.log(serverList[0].hours, 'hello');
   };
 
   const deleteServer = (ind) => {
@@ -70,6 +60,18 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     // setServerList(newArray);
     // console.log('amc');
   };
+
+  const calcEarnedTips = (serverList) => {
+    for (let i = 0; i < serverList.length; i++) {
+      serverList[i].earnedTips = serverList[i].hours * tipPerHour;
+    }
+    setServerList(serverList);
+  };
+
+  useEffect(() => {
+    setTotalHoursLeft(totalServerHours);
+    setTotalTipLeft(serverTotalTip);
+  }, [totalServerHours, serverTotalTip]);
 
   return (
     <div>
@@ -150,7 +152,9 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
         </table>
       </div>
       <div>
-        <button onClick={() => calcEarnedTips(serverList)}>Calculate</button>
+        <button type="submit" onClick={() => calcEarnedTips(serverList)}>
+          Calculate
+        </button>
       </div>
     </div>
   );

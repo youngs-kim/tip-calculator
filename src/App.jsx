@@ -25,17 +25,15 @@ function App() {
   };
 
   useEffect(() => {
-    if (totalTip === '') {
+    if (totalTip === '' || percentKitchen === '') {
       setServerTotalTip(0);
+      setKitchenTip(0);
     } else {
       const tip = totalTip - kitchenTip;
       setServerTotalTip(parseFloat(totalTip - kitchenTip).toFixed(2));
       setTipPerHour(parseFloat(tip / totalServerHours).toFixed(2));
-      console.log(serverTotalTip, 'serverTotalTip');
-      console.log(totalServerHours, 'totalServerHours');
-      console.log(kitchenTip, 'kitchenTip');
     }
-  }, [kitchenTip]);
+  }, [serverTotalTip, kitchenTip]);
 
   return (
     <div className="App">
