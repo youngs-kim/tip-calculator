@@ -61,11 +61,20 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     // console.log('amc');
   };
 
-  const calcEarnedTips = (serverList) => {
-    for (let i = 0; i < serverList.length; i++) {
-      serverList[i].earnedTips = serverList[i].hours * tipPerHour;
-    }
-    setServerList(serverList);
+  // const calcEarnedTips = (serverList) => {
+  //   for (let i = 0; i < serverList.length; i++) {
+  //     serverList[i].earnedTips = serverList[i].hours * tipPerHour;
+  //   }
+  //   setServerList(serverList);
+  // };
+
+  // Never mutate a state variable, create a new reference and update the state variable by using an update method.
+  const calcEarnedTips = () => {
+    const newArray = [...serverList];
+    newArray.forEach((server) => {
+      server.earnedTips = server.hours * tipPerHour;
+    });
+    setServerList(newArray);
   };
 
   useEffect(() => {
@@ -156,7 +165,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
         </table>
       </div>
       <div>
-        <button type="submit" onClick={() => calcEarnedTips(serverList)}>
+        <button type="submit" onClick={() => calcEarnedTips()}>
           Calculate
         </button>
       </div>
