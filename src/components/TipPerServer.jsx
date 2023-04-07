@@ -69,7 +69,11 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   };
 
   useEffect(() => {
-    setTotalHoursLeft(totalServerHours);
+    if (totalServerHours !== '') {
+      setTotalHoursLeft(totalServerHours);
+    } else {
+      setTotalHoursLeft(0);
+    }
     setTotalTipLeft(serverTotalTip);
   }, [totalServerHours, serverTotalTip]);
 
