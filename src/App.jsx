@@ -11,26 +11,36 @@ function App() {
   const [tipPerHour, setTipPerHour] = useState(0);
 
   const onChangeTotalTip = (e) => {
+    if (e.target.value === '') {
+      setTotalTip('');
+    }
     setTotalTip(e.target.value);
   };
 
   const onChangeTotalServerHours = (e) => {
+    if (e.target.value === '') {
+      setTotalServerHours('');
+    }
     setTotalServerHours(e.target.value);
   };
 
   const onChangePercentKitchen = (e) => {
-    setPercentKitchen(e.target.valueAsNumber);
-    const kitchenResult = totalTip * (e.target.valueAsNumber / 100);
-    setKitchenTip(parseFloat(Math.round(kitchenResult * 100) / 100).toFixed(2));
+    if (e.target.value === '') {
+      setPercentKitchen('');
+      setKitchenTip(0);
+    } else {
+      setPercentKitchen(e.target.valueAsNumber);
+      const kitchenResult = totalTip * (e.target.valueAsNumber / 100);
+      setKitchenTip(parseFloat(Math.round(kitchenResult * 100) / 100).toFixed(2));
+    }
   };
 
   useEffect(() => {
-    if (totalTip === '' || percentKitchen === '') {
-      setServerTotalTip(0);
-      setKitchenTip(0);
+    const tip = totalTip - kitchenTip;
+    setServerTotalTip(parseFloat(totalTip - kitchenTip).toFixed(2));
+    if (tip === 0) {
+      setTipPerHour(0);
     } else {
-      const tip = totalTip - kitchenTip;
-      setServerTotalTip(parseFloat(totalTip - kitchenTip).toFixed(2));
       setTipPerHour(parseFloat(tip / totalServerHours).toFixed(2));
     }
   }, [serverTotalTip, kitchenTip]);
@@ -41,14 +51,15 @@ function App() {
       <div className="top-container">
         <div className="sec-container">
           <h2>Total Tip</h2>
-          <input type="number" value={totalTip} onChange={onChangeTotalTip} />
+          <input type="number" min="0" value={totalTip} onChange={onChangeTotalTip} />
         </div>
 
         <div className="sec-container">
           <h2>Total Server Hours</h2>
           <input
             type="number"
-            value={totalServerHours}
+            min="0"
+            value={totalServerHours} // <input type="number" /> will always return integer value, typeof(totalServerHours) === Number, hence why empty field === NaN
             onChange={onChangeTotalServerHours}
           />
         </div>
@@ -57,6 +68,7 @@ function App() {
           <h2>Percentage for Kitchen</h2>
           <input
             type="number"
+            min="0"
             value={percentKitchen}
             onChange={onChangePercentKitchen}
           />
