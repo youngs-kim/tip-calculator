@@ -22,7 +22,11 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
 
   const updateHours = (index) => (e) => {
     let arr = [...serverList];
-    arr[index]['hours'] = e.target.valueAsNumber;
+    if (e.target.value === '') {
+      arr[index]['hours'] = '';
+    } else {
+      arr[index]['hours'] = e.target.valueAsNumber;
+    }
     setServerList(arr);
     setTotalHoursLeft(totalServerHours - sumTotalHours(arr));
   };
@@ -56,20 +60,43 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
     const newArray = serverList.filter((item, index) => index !== ind);
     setServerList(newArray);
     console.log(ind, 'ind');
-    // const newArray = serverList.filter((item) => item.id !== id);
-    // setServerList(newArray);
-    // console.log('amc');
+
+    let sum = 0;
+    newArray.forEach((server) => {
+      sum += server.hours;
+    });
+    setTotalHoursLeft(totalServerHours - sum);
   };
 
-  const calcEarnedTips = (serverList) => {
-    for (let i = 0; i < serverList.length; i++) {
-      serverList[i].earnedTips = serverList[i].hours * tipPerHour;
-    }
-    setServerList(serverList);
+  // const calcEarnedTips = (serverList) => {
+  //   for (let i = 0; i < serverList.length; i++) {
+  //     serverList[i].earnedTips = serverList[i].hours * tipPerHour;
+  //   }
+  //   setServerList(serverList);
+  // };
+
+  // Never mutate a state variable, create a new reference and update the state variable by using an update method.
+  const calcEarnedTips = () => {
+    const newArray = [...serverList];
+    newArray.forEach((server) => {
+      server.earnedTips = server.hours * tipPerHour;
+      server.earnedTips = parseFloat(
+        Math.round(server.earnedTips * 100) / 100
+      ).toFixed(2);
+    });
+    setServerList(newArray);
+  };
+
+  const restart = () => {
+    window.location.reload(false);
   };
 
   useEffect(() => {
-    setTotalHoursLeft(totalServerHours);
+    if (totalServerHours !== '') {
+      setTotalHoursLeft(totalServerHours);
+    } else {
+      setTotalHoursLeft(0);
+    }
     setTotalTipLeft(serverTotalTip);
   }, [totalServerHours, serverTotalTip]);
 
@@ -152,9 +179,10 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
         </table>
       </div>
       <div>
-        <button type="submit" onClick={() => calcEarnedTips(serverList)}>
+        <button type="submit" onClick={() => calcEarnedTips()}>
           Calculate
         </button>
+        <button onClick={restart}>Reset</button>
       </div>
     </div>
   );
