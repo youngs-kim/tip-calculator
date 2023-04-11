@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import { GrPowerReset } from 'react-icons/Gr';
+import { RxReset } from 'react-icons/Rx';
 import { FiUserPlus } from 'react-icons/Fi';
 import { TiUserDelete } from 'react-icons/Ti';
 
@@ -31,7 +31,13 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
       arr[index]['hours'] = e.target.valueAsNumber;
     }
     setServerList(arr);
-    setTotalHoursLeft(totalServerHours - sumTotalHours(arr));
+    // setTotalHoursLeft(totalServerHours - sumTotalHours(arr));
+
+    setTotalHoursLeft(
+      parseFloat(
+        Math.round((totalServerHours - sumTotalHours(arr)) * 100) / 100
+      ).toFixed(2)
+    );
   };
 
   const updateName = (index) => (e) => {
@@ -108,7 +114,9 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
       <div className="mb-3 row">
         <div className="col">
           <h5 className="tip-info">Tip Per Hour</h5>
-          <h2 className="tip-info">${tipPerHour}</h2>
+          <h2 className="tip-info">
+            ${parseFloat(Math.round(tipPerHour * 100) / 100).toFixed(2)}
+          </h2>
         </div>
         <div className="col">
           <h5 className="tip-info">Total Hours left</h5>
@@ -118,13 +126,14 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
           <h5 className="tip-info">Total Tip left</h5>
           <h2 className="tip-info">${totalTipLeft}</h2>
         </div>
+        <hr />
       </div>
 
       <div className="buttons">
         <div className="add-button">
           <FiUserPlus onClick={addServer} />
         </div>
-        <div>
+        <div className="cal-reset-btns">
           <button
             className="cal-btn"
             type="submit"
@@ -132,9 +141,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
           >
             Calculate
           </button>
-          <button className="cal-reset-btn" onClick={restart}>
-            <GrPowerReset />
-          </button>
+          <RxReset onClick={restart} className="reset-btn" />
         </div>
       </div>
 
@@ -148,49 +155,55 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
         <input type="number" />
         <h2>$40</h2>
       </div> */}
-      <div className="server-table-container">
-        <table className="server-table">
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td>Hours</td>
-              <td>Earned Tips</td>
-            </tr>
-            {serverList.map((item, index) => {
-              return (
-                <tr key={index} className="server-card">
-                  <td>
-                    <input
-                      type="text"
-                      name="name"
-                      value={item.name}
-                      onChange={updateName(index)}
-                      // onChange={(e) => handleInputChange()}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      className="hour-input"
-                      type="number"
-                      name="hours"
-                      value={item.hours}
-                      onChange={updateHours(index)}
-                      // onChange={(e) => handleInputChange()}
-                    />
-                  </td>
-                  <td className="earned-tips">
-                    <h2>${item.earnedTips}</h2>
-                  </td>
-                  <td>
-                    <TiUserDelete
-                      className="delete-btn"
-                      onClick={() => deleteServer(index)}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
-            {/* <tr>
+      <div className="border-for-servers">
+        <div className="server-table-container">
+          <table className="server-table">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>Hours</td>
+                <td>Earned Tips</td>
+              </tr>
+              {serverList.map((item, index) => {
+                return (
+                  <tr key={index} className="server-card">
+                    <td>
+                      <input
+                        type="text"
+                        name="name"
+                        value={item.name}
+                        onChange={updateName(index)}
+                        // onChange={(e) => handleInputChange()}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="hour-input"
+                        type="number"
+                        name="hours"
+                        value={item.hours}
+                        onChange={updateHours(index)}
+                        // onChange={(e) => handleInputChange()}
+                      />
+                    </td>
+                    <td className="earned-tips">
+                      <h2>
+                        $
+                        {parseFloat(
+                          Math.round(item.earnedTips * 100) / 100
+                        ).toFixed(2)}
+                      </h2>
+                    </td>
+                    <td>
+                      <TiUserDelete
+                        className="delete-btn"
+                        onClick={() => deleteServer(index)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+              {/* <tr>
               <td>
                 <input type="text" />
               </td>
@@ -205,10 +218,10 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
                 <h2>${earnedTips}</h2>
               </td>
             </tr> */}
-          </tbody>
-        </table>
-      </div>
-      {/* <div>
+            </tbody>
+          </table>
+        </div>
+        {/* <div>
         <button
           className="cal-btn"
           type="submit"
@@ -220,6 +233,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
           <GrPowerReset />
         </button>
       </div> */}
+      </div>
     </div>
   );
 };

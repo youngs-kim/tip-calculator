@@ -55,7 +55,7 @@ function App() {
             <h1 className="header">Tip Calculator</h1>
             <div className="tip-form">
               <div className="tip-row">
-                <label for="total-tip" className="">
+                <label for="total-tip" className="input-title">
                   Total Tip
                 </label>
                 <div className="">
@@ -70,7 +70,7 @@ function App() {
               </div>
 
               <div className="tip-row">
-                <label for="total-server-hours" className="">
+                <label for="total-server-hours" className="input-title">
                   Total Server Hours
                 </label>
                 <div className="">
@@ -85,8 +85,8 @@ function App() {
               </div>
 
               <div className="tip-row">
-                <label for="percent-kitchen" className="">
-                  Percentage for Kitchen
+                <label for="percent-kitchen" className="input-title">
+                  % for Kitchen Tip
                 </label>
                 <div className="">
                   <input
@@ -101,7 +101,9 @@ function App() {
 
               <div className="tip-row">
                 <h5 className="">Kitchen Tip</h5>
-                <h5 className="">${kitchenTip}</h5>
+                <h5 className="">
+                  ${parseFloat(Math.round(kitchenTip * 100) / 100).toFixed(2)}
+                </h5>
               </div>
 
               <div className="tip-row">

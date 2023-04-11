@@ -35,6 +35,7 @@
 .tip-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 0.5rem;
   box-shadow: rgb(0, 0, 0) 0px 5px 15px;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -62,13 +63,23 @@
   justify-content: space-between;
 }
 
+.border-for-servers {
+  /* height: 25rem; */
+  max-height: 26rem;
+  overflow-y: auto;
+  /* box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  padding: 1.5rem;
+  border-radius: 0.5rem; */
+}
 .server-table-container {
   display: flex;
   justify-content: center;
 }
 
 .server-table {
+  margin-top: 1rem;
   width: 50%;
+  font-size: 1.1rem;
 }
 
 .tip-info {
@@ -87,8 +98,23 @@
   color: rgb(56, 162, 255);
 }
 
+.add-button:hover {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid;
+  width: 3.5rem;
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  color: rgb(51, 88, 236);
+  cursor: pointer;
+}
+
 .server-card {
+  padding-top: 50px;
   box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+
   border-radius: 0.5rem;
 }
 
@@ -97,7 +123,7 @@ tr > td {
 }
 
 .server-card > td {
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 
 .earned-tips {
@@ -109,8 +135,8 @@ tr > td {
   justify-content: center;
   margin: 0 auto;
   border: 1px solid;
-  width: 4rem;
-  height: 3rem;
+  width: 3rem;
+  height: 2.5rem;
   border-radius: 0.5rem;
   font-size: 2.5rem;
   color: #ea3b52;
@@ -133,6 +159,18 @@ tr > td {
   border-radius: 0.5rem;
   color: rgb(25, 193, 28);
   background-color: rgb(0, 3, 1);
+  margin-right: 1rem;
+}
+
+.cal-btn:hover {
+  margin: 0 auto;
+  border: 1px solid;
+  width: auto;
+  height: 2rem;
+  border-radius: 0.5rem;
+  color: rgba(27, 142, 29, 0.825);
+  background-color: rgb(0, 3, 1);
+  margin-right: 1rem;
 }
 
 .buttons {
@@ -142,4 +180,25 @@ tr > td {
 
 .hour-input {
   width: 7rem;
+}
+
+.input-title {
+  font-size: 1.2rem;
+}
+
+.reset-btn {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid;
+  width: 3.21rem;
+  height: 2.05rem;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  color: white(255, 255, 255);
+  background-color: #fdb900;
+}
+
+.cal-reset-btns {
+  display: flex;
 }
