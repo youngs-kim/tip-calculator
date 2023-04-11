@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import { GrPowerReset } from 'react-icons/Gr';
+import { FiUserPlus } from 'react-icons/Fi';
+import { TiUserDelete } from 'react-icons/Ti';
 
 const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   const defaultServer = {
@@ -102,13 +105,38 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
 
   return (
     <div>
-      <div className="add-button">
-        <button onClick={addServer}>+</button>
+      <div className="mb-3 row">
+        <div className="col">
+          <h5 className="tip-info">Tip Per Hour</h5>
+          <h2 className="tip-info">${tipPerHour}</h2>
+        </div>
+        <div className="col">
+          <h5 className="tip-info">Total Hours left</h5>
+          <h2 className="tip-info">{totalHoursLeft}</h2>
+        </div>
+        <div className="col">
+          <h5 className="tip-info">Total Tip left</h5>
+          <h2 className="tip-info">${totalTipLeft}</h2>
+        </div>
       </div>
 
-      <h5>Tip Per Hour: ${tipPerHour}</h5>
-      <h5>Total Hours left: {totalHoursLeft}</h5>
-      <h5>Total Tip left: ${totalTipLeft}</h5>
+      <div className="buttons">
+        <div className="add-button">
+          <FiUserPlus onClick={addServer} />
+        </div>
+        <div>
+          <button
+            className="cal-btn"
+            type="submit"
+            onClick={() => calcEarnedTips()}
+          >
+            Calculate
+          </button>
+          <button className="cal-reset-btn" onClick={restart}>
+            <GrPowerReset />
+          </button>
+        </div>
+      </div>
 
       {/* <div className="server-tip-info">
         <h2>Name</h2>
@@ -130,7 +158,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
             </tr>
             {serverList.map((item, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} className="server-card">
                   <td>
                     <input
                       type="text"
@@ -142,6 +170,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
                   </td>
                   <td>
                     <input
+                      className="hour-input"
                       type="number"
                       name="hours"
                       value={item.hours}
@@ -149,13 +178,14 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
                       // onChange={(e) => handleInputChange()}
                     />
                   </td>
-                  <td>
+                  <td className="earned-tips">
                     <h2>${item.earnedTips}</h2>
-                    <div>
-                      <button onClick={() => deleteServer(index)}>
-                        Delete
-                      </button>
-                    </div>
+                  </td>
+                  <td>
+                    <TiUserDelete
+                      className="delete-btn"
+                      onClick={() => deleteServer(index)}
+                    />
                   </td>
                 </tr>
               );
@@ -178,12 +208,18 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
           </tbody>
         </table>
       </div>
-      <div>
-        <button type="submit" onClick={() => calcEarnedTips()}>
+      {/* <div>
+        <button
+          className="cal-btn"
+          type="submit"
+          onClick={() => calcEarnedTips()}
+        >
           Calculate
         </button>
-        <button onClick={restart}>Reset</button>
-      </div>
+        <button className="cal-reset-btn" onClick={restart}>
+          <GrPowerReset />
+        </button>
+      </div> */}
     </div>
   );
 };

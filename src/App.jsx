@@ -49,54 +49,76 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="header">Tip Calculator</h1>
-      <div className="top-container">
-        <div className="sec-container">
-          <h2>Total Tip</h2>
-          <input
-            type="number"
-            min="0"
-            value={totalTip}
-            onChange={onChangeTotalTip}
-          />
-        </div>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h1 className="header">Tip Calculator</h1>
+            <div className="tip-form">
+              <div className="tip-row">
+                <label for="total-tip" className="">
+                  Total Tip
+                </label>
+                <div className="">
+                  <input
+                    id="total-tip"
+                    type="number"
+                    min="0"
+                    value={totalTip}
+                    onChange={onChangeTotalTip}
+                  />
+                </div>
+              </div>
 
-        <div className="sec-container">
-          <h2>Total Server Hours</h2>
-          <input
-            type="number"
-            min="0"
-            value={totalServerHours} // <input type="number" /> will always return integer value, typeof(totalServerHours) === Number, hence why empty field === NaN
-            onChange={onChangeTotalServerHours}
-          />
-        </div>
+              <div className="tip-row">
+                <label for="total-server-hours" className="">
+                  Total Server Hours
+                </label>
+                <div className="">
+                  <input
+                    id="total-server-hours"
+                    type="number"
+                    min="0"
+                    value={totalServerHours}
+                    onChange={onChangeTotalServerHours}
+                  />
+                </div>
+              </div>
 
-        <div className="sec-container">
-          <h2>Percentage for Kitchen</h2>
-          <input
-            type="number"
-            min="0"
-            value={percentKitchen}
-            onChange={onChangePercentKitchen}
-          />
-        </div>
+              <div className="tip-row">
+                <label for="percent-kitchen" className="">
+                  Percentage for Kitchen
+                </label>
+                <div className="">
+                  <input
+                    id="percent-kitchen"
+                    type="number"
+                    min="0"
+                    value={percentKitchen}
+                    onChange={onChangePercentKitchen}
+                  />
+                </div>
+              </div>
 
-        <div className="sec-container">
-          <h2>Kitchen Tip</h2>
-          <h2>${kitchenTip}</h2>
-        </div>
+              <div className="tip-row">
+                <h5 className="">Kitchen Tip</h5>
+                <h5 className="">${kitchenTip}</h5>
+              </div>
 
-        <div className="sec-container">
-          <h2>Server Total Tip</h2>
-          <h2>${serverTotalTip}</h2>
+              <div className="tip-row">
+                <h5 className="">Server Total Tip</h5>
+                <h5 className="">${serverTotalTip}</h5>
+              </div>
+            </div>
+          </div>
+          <div className="col">
+            <TipPerServer
+              totalServerHours={totalServerHours}
+              serverTotalTip={serverTotalTip}
+              tipPerHour={tipPerHour}
+            />
+          </div>
         </div>
       </div>
-
-      <TipPerServer
-        totalServerHours={totalServerHours}
-        serverTotalTip={serverTotalTip}
-        tipPerHour={tipPerHour}
-      />
     </div>
   );
 }

@@ -1,6 +1,21 @@
+.App {
+  background-color: #181a18fa;
+  color: white;
+  height: 45rem;
+  font-family: 'Krona One', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.container {
+  padding-top: 3rem;
+}
+
 .header {
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .top-container {
@@ -8,15 +23,27 @@
   justify-content: space-between;
 }
 
-.sec-container {
+.tip-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 450px;
+  margin: 0 auto;
 }
 
-.sec-container h2 {
-  margin: 0;
+.tip-row {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.form-row {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .add-button {
@@ -42,4 +69,77 @@
 
 .server-table {
   width: 50%;
+}
+
+.tip-info {
+  text-align: center;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid;
+  width: 3.5rem;
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  color: rgb(56, 162, 255);
+}
+
+.server-card {
+  box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  border-radius: 0.5rem;
+}
+
+tr > td {
+  text-align: center;
+}
+
+.server-card > td {
+  padding: 0.5rem;
+}
+
+.earned-tips {
+  min-width: 10rem;
+}
+
+.delete-btn {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid;
+  width: 4rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  font-size: 2.5rem;
+  color: #ea3b52;
+}
+
+.cal-reset-btn {
+  margin: 0 auto;
+  border: 1px solid;
+  width: 4re;
+  height: 2rem;
+  border-radius: 0.5rem;
+  color: black;
+}
+
+.cal-btn {
+  margin: 0 auto;
+  border: 1px solid;
+  width: auto;
+  height: 2rem;
+  border-radius: 0.5rem;
+  color: rgb(25, 193, 28);
+  background-color: rgb(0, 3, 1);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.hour-input {
+  width: 7rem;
 }
