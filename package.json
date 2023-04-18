@@ -1,9 +1,9 @@
 {
-  "name": "y",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "homepage": "https://youngs-kim.github.io/tip-calculator/",
+  "name": "tip-calculator",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
