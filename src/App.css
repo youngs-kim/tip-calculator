@@ -112,10 +112,8 @@
 }
 
 .server-card {
-  padding-top: 50px;
-  box-shadow: rgb(0, 0, 0) 0px 5px 15px;
-
-  border-radius: 0.5rem;
+  /* box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  border-radius: 0.5rem; */
 }
 
 tr > td {
@@ -140,6 +138,21 @@ tr > td {
   border-radius: 0.5rem;
   font-size: 2.5rem;
   color: #ea3b52;
+  margin-right: 0.7rem;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid;
+  width: 3rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 2.5rem;
+  color: #f47788;
+  margin-right: 0.7rem;
+  cursor: pointer;
 }
 
 .cal-reset-btn {
@@ -201,4 +214,11 @@ tr > td {
 
 .cal-reset-btns {
   display: flex;
+}
+
+.server-section {
+  box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  height: 38rem;
 }

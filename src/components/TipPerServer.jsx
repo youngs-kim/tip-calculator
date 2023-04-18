@@ -110,7 +110,7 @@ const TipPerServer = ({ totalServerHours, serverTotalTip, tipPerHour }) => {
   }, [totalServerHours, serverTotalTip]);
 
   return (
-    <div>
+    <div className="server-section">
       <div className="mb-3 row">
         <div className="col">
           <h5 className="tip-info">Tip Per Hour</h5>
