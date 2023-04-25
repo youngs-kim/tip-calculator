@@ -1,6 +1,5 @@
 # Tip Calculator
 
-SPA to dynamically render calculation of tip(money) servers earn in a day. 
+Single Page App to calculate tip servers earn in a day. 
 ![](image/tip-calculator.png)
-*Update to come
-Mobile Design
+*Mobile version coming soon
